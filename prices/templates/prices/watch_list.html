@@ -1,0 +1,36 @@
+{% extends "prices/base.html" %}
+{% block title %}Mis activos{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-header">Activos a vigilar</div>
+  <div class="card-body">
+    {% if items %}
+    <table class="table table-sm align-middle">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Símbolo</th>
+          <th>Objetivo</th>
+          <th class="text-end">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in items %}
+        <tr>
+          <td>{{ i.name }}</td>
+          <td>{{ i.symbol }}</td>
+          <td>{{ i.target_price|default:"—" }}</td>
+          <td class="text-end">
+            <a class="btn btn-outline-secondary btn-sm" href="{% url 'watch_update' i.pk %}">Editar</a>
+            <a class="btn btn-outline-danger btn-sm" href="{% url 'watch_delete' i.pk %}">Borrar</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <p class="text-muted">Aún no tienes activos. Pulsa “Nuevo”.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

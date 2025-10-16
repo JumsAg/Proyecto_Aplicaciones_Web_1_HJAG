@@ -1,0 +1,14 @@
+{% extends "prices/base.html" %}
+{% block title %}Confirmar borrado{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-body">
+    <p>¿Borrar <strong>{{ item.name }} ({{ item.symbol }})</strong>?</p>
+    <form method="post" class="d-flex gap-2">
+      {% csrf_token %}
+      <button class="btn btn-danger" type="submit">Sí, borrar</button>
+      <a class="btn btn-secondary" href="{% url 'watch_list' %}">No, volver</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

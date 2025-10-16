@@ -1,0 +1,22 @@
+{% extends "prices/base.html" %}
+{% block title %}Precio BTC{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-header">💰 Precio actual de Bitcoin (CoinGecko)</div>
+  <div class="card-body">
+    {% if error %}
+      <div class="alert alert-danger">Error: {{ error }}</div>
+    {% else %}
+      {% if data %}
+        <ul class="mb-0">
+          <li><strong>USD:</strong> {{ data.usd }}</li>
+          <li><strong>EUR:</strong> {{ data.eur }}</li>
+          <li><strong>GBP:</strong> {{ data.gbp }}</li>
+        </ul>
+      {% else %}
+        <p class="text-muted mb-0">Sin datos.</p>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

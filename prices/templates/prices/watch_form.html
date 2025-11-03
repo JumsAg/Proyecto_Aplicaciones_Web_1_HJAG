@@ -1,15 +1,16 @@
 {% extends "prices/base.html" %}
-{% block title %}{{ title }}{% endblock %}
+{% block title %}{{ title|default:"Nuevo activo" }}{% endblock %}
+
 {% block content %}
 <div class="card">
-  <div class="card-header">{{ title }}</div>
+  <div class="card-header">{{ title|default:"Nuevo activo" }}</div>
   <div class="card-body">
     <form method="post" class="vstack gap-3">
       {% csrf_token %}
       {{ form.as_p }}
       <div class="d-flex gap-2">
         <button class="btn btn-primary" type="submit">Guardar</button>
-        <a class="btn btn-secondary" href="{% url 'watch_list' %}">Cancelar</a>
+        <a class="btn btn-secondary" href="{% url 'prices:watch_list' %}">Cancelar</a>
       </div>
     </form>
   </div>

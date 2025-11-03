@@ -20,3 +20,20 @@
   </div>
 </div>
 {% endblock %}
+
+{% if prices %}
+  <div class="card">
+    <div class="card-body">
+      <h4>Precio actual de Bitcoin</h4>
+      <p>USD: {{ prices.usd }} | EUR: {{ prices.eur }} | GBP: {{ prices.gbp }}</p>
+      {% if cached %}
+        <small>Mostrando último dato en caché (la API está ocupada). Se actualiza cada {{ ttl_seconds }}s.</small>
+      {% endif %}
+    </div>
+  </div>
+{% else %}
+  <div class="alert alert-warning">
+    No se pudo obtener el precio en este momento (límite de consultas). Intenta más tarde.
+    {% if api_error %}<br><small>{{ api_error }}</small>{% endif %}
+  </div>
+{% endif %}

@@ -41,3 +41,10 @@ TEMPLATES = [
 ROOT_URLCONF = "btcsite.urls"
 WSGI_APPLICATION = "btcsite.wsgi.application"
 ASGI_APPLICATION = "btcsite.asgi.application"
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "LOCATION": "btcapp-cache",
+    }
+}
